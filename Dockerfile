@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-ce:17.10.0-ce.0
+FROM gitlab/gitlab-ce:18.10.0-ce.0
 
 COPY docker-entrypoint.sh /usr/local/bin/railway-gitlab-entrypoint
 RUN chmod +x /usr/local/bin/railway-gitlab-entrypoint
