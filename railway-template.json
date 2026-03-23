@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/vergissberlin/railway/main/docs/railway-template.schema.json",
+  "schemaVersion": 1,
+  "project": "railwayapp-gitlab",
+  "repo": "vergissberlin/railwayapp-gitlab",
+  "displayName": "GitLab CE",
+  "publishedCode": "gitlab-ce",
+  "image": "https://raw.githubusercontent.com/vergissberlin/railwayapp-gitlab/main/railwayapp-gitlab.svg",
+  "description": "Deploy a self-hosted GitLab CE instance on Railway.",
+  "workspaceAutomation": true
+}
