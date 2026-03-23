@@ -4,7 +4,7 @@
 
 Deploy a self-hosted GitLab CE instance on Railway.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/new)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/new?referralCode=2_sIT9)
 
 ## Files in this template
 
