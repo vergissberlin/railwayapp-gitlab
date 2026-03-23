@@ -1,6 +1,6 @@
 # GitLab CE
 
-![GitLab Icon](./railwayapp-gitlab.svg)
+<img src="./railwayapp-gitlab.svg" width="144" alt="GitLab icon" >
 
 Deploy a self-hosted GitLab CE instance on Railway.
 
