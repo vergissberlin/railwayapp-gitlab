@@ -38,3 +38,6 @@ Attach a Railway volume and mount these paths:
 - GitLab needs significant RAM and CPU. Use a larger Railway plan for production.
 - First boot can take several minutes.
 - Keep at least one persistent volume attached before storing projects.
+
+<!-- footer -->
+[![GitLab CE](https://img.shields.io/badge/GitLab%20CE-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white)](https://github.com/vergissberlin/railwayapp-gitlab)
