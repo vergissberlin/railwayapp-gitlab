@@ -1,0 +1,22 @@
+<svg width="1280" height="270" viewBox="0 0 1280 270" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">GitLab CE header banner</title>
+  <desc id="desc">Flat gradient banner for GitLab CE template with software logo.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="270" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1021"/>
+      <stop offset="0.55" stop-color="#131B3F"/>
+      <stop offset="1" stop-color="#1F174A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="270" rx="26" fill="url(#bg)"/>
+  <circle cx="1120" cy="68" r="34" fill="#4F46E5" opacity="0.33"/>
+  <circle cx="1185" cy="205" r="56" fill="#06B6D4" opacity="0.15"/>
+  
+      <rect x="64" y="60" width="152" height="152" rx="24" fill="#0B1228" opacity="0.92"/>
+      <image href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkM2RDI2IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8dGl0bGU+R2l0TGFiPC90aXRsZT4KICA8cGF0aCBkPSJtMjMuNjAwNCA5LjU5MjctLjAzMzctLjA4NjJMMjAuMy45ODE0YS44NTEuODUxIDAgMCAwLS4zMzYyLS40MDUuODc0OC44NzQ4IDAgMCAwLS45OTk3LjA1MzkuODc0OC44NzQ4IDAgMCAwLS4yOS40Mzk5bC0yLjIwNTUgNi43NDhINy41Mzc1bC0yLjIwNTctNi43NDhhLjg1NzMuODU3MyAwIDAgMC0uMjktLjQ0MTIuODc0OC44NzQ4IDAgMCAwLS45OTk3LS4wNTM3Ljg1ODUuODU4NSAwIDAgMC0uMzM2Mi40MDQ5TC40MzMyIDkuNTAxNWwtLjAzMjUuMDg2MmE2LjA2NTcgNi4wNjU3IDAgMCAwIDIuMDExOSA3LjAxMDVsLjAxMTMuMDA4Ny4wMy4wMjEzIDQuOTc2IDMuNzI2NCAyLjQ2MiAxLjg2MzMgMS40OTk1IDEuMTMyMWExLjAwODUgMS4wMDg1IDAgMCAwIDEuMjE5NyAwbDEuNDk5NS0xLjEzMjEgMi40NjE5LTEuODYzMyA1LjAwNi0zLjc0ODkuMDEyNS0uMDFhNi4wNjgyIDYuMDY4MiAwIDAgMCAyLjAwOTQtNy4wMDN6Ii8+Cjwvc3ZnPgo=" x="84" y="80" width="112" height="112" preserveAspectRatio="xMidYMid meet"/>
+    
+  <text x="258" y="122" fill="#FFFFFF" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="52" font-weight="800">GitLab CE</text>
+  <text x="258" y="168" fill="#B6C2FF" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="28" font-weight="500">Railway Template</text>
+  <rect x="258" y="188" width="286" height="44" rx="22" fill="#1C285D" stroke="#67E8F9" stroke-opacity="0.6"/>
+  <text x="284" y="216" fill="#CFFAFE" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="19" font-weight="700">Deploy on Railway</text>
+</svg>
