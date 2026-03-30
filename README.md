@@ -42,6 +42,16 @@ Once generated, `RAILWAY_PUBLIC_DOMAIN` is available and used by the entrypoint.
   - `/var/log/gitlab`
 - [ ] Wait for first boot to complete before first login.
 
+## Railway deploy runbook
+
+Use this order to avoid blocked-host issues on first setup:
+
+1. Deploy once.
+2. Generate a public domain in Railway.
+3. Deploy again (so `RAILWAY_PUBLIC_DOMAIN` is present at boot time).
+4. Verify the application with:
+   - `https://<your-domain>/users/sign_in`
+
 ## First login
 
 - Username: `root`
