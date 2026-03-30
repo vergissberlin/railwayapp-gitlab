@@ -2,7 +2,6 @@
 
 ![Template Header](./template-header.svg)
 
-
 Deploy a self-hosted GitLab CE instance on Railway.
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/vGH4ea?referralCode=2_sIT9&utm_medium=integration&utm_source=template&utm_campaign=generic)
