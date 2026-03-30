@@ -20,6 +20,28 @@ GITLAB_ROOT_PASSWORD=replace-with-strong-password
 
 `RAILWAY_PUBLIC_DOMAIN` and `PORT` are provided by Railway.
 
+## Public domain setup
+
+Railway does not auto-generate a public domain during template deploy.
+
+After deploying this template:
+
+1. Open the service in Railway.
+2. Go to `Settings` -> `Networking` -> `Public Networking`.
+3. Click `Generate Domain`.
+
+Once generated, `RAILWAY_PUBLIC_DOMAIN` is available and used by the entrypoint.
+
+## Post-deploy checklist
+
+- [ ] Set a strong `GITLAB_ROOT_PASSWORD`.
+- [ ] Generate a public domain in Railway (`Settings` -> `Networking` -> `Public Networking`).
+- [ ] Attach a persistent volume and mount:
+  - `/var/opt/gitlab`
+  - `/etc/gitlab`
+  - `/var/log/gitlab`
+- [ ] Wait for first boot to complete before first login.
+
 ## First login
 
 - Username: `root`
