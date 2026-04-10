@@ -10,7 +10,7 @@ Deploy a self-hosted GitLab CE instance on Railway.
 
 - `Dockerfile` uses the official `gitlab/gitlab-ce` image.
 - `docker-entrypoint.sh` injects Railway domain and dynamic `$PORT`.
-- `railway.toml` configures health checks and restart policy.
+- `railway.toml` configures health checks, restart policy, and required volume mount.
 
 ## Environment variables
 
@@ -64,6 +64,8 @@ Attach a Railway volume and mount these paths:
 - `/var/opt/gitlab`
 - `/etc/gitlab`
 - `/var/log/gitlab`
+
+`railway.toml` enforces `/var/opt/gitlab` via `requiredMountPath` as the minimum persistent path.
 
 ## Notes
 
