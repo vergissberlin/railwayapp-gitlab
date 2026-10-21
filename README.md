@@ -79,7 +79,7 @@ Attach a Railway volume and mount these paths:
 
 ## Notes
 
-- GitLab needs significant RAM and CPU. Use a larger Railway plan for production.
+- GitLab needs significant RAM and CPU: plan for at least 4 GB RAM (8 GB recommended) and 2 vCPU. The first boot runs `gitlab-ctl reconfigure` and database migrations and can take 10-20 minutes before the healthcheck passes.
 - First boot can take several minutes.
 - Keep at least one persistent volume attached before storing projects.
 
