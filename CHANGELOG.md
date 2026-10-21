@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.1](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.2.0...railwayapp-gitlab-v0.2.1) (2026-10-21)
+
+
+### Bug Fixes
+
+* disable Let's Encrypt behind Railway's TLS proxy and document RAM needs ([#16](https://github.com/vergissberlin/railwayapp-gitlab/issues/16)) ([435deb4](https://github.com/vergissberlin/railwayapp-gitlab/commit/435deb46c03212d8af505f5ebefd1bb349a119e5))
+
+
+### Chores
+
+* **deps:** update gitlab/gitlab-ce docker tag to v18.11.12 ([#12](https://github.com/vergissberlin/railwayapp-gitlab/issues/12)) ([7cd1a0c](https://github.com/vergissberlin/railwayapp-gitlab/commit/7cd1a0cc235c7edb87f43168456a15692bcc0cec))
+
 ## [0.2.0](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.1.0...railwayapp-gitlab-v0.2.0) (2026-08-20)
 
 
