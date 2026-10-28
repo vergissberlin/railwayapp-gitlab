@@ -24,6 +24,7 @@ flowchart LR
 - `Dockerfile` uses the official `gitlab/gitlab-ce` image.
 - `docker-entrypoint.sh` injects Railway domain and dynamic `$PORT`.
 - `railway.toml` configures health checks, restart policy, and required volume mount.
+- `persist-secrets.sh` keeps `gitlab-secrets.json` on the volume so encrypted data survives redeploys (see [Persistent storage](#persistent-storage)).
 
 ## Environment variables
 
@@ -72,13 +73,32 @@ Use this order to avoid blocked-host issues on first setup:
 
 ## Persistent storage
 
-Attach a Railway volume and mount these paths:
+Railway attaches **one** volume per service. `railway.toml` enforces it at `/var/opt/gitlab` via `requiredMountPath`. Everything else in the container, including `/etc/gitlab` and `/var/log/gitlab`, is recreated on every deploy.
 
-- `/var/opt/gitlab`
-- `/etc/gitlab`
-- `/var/log/gitlab`
+### `gitlab-secrets.json`
 
-`railway.toml` enforces `/var/opt/gitlab` via `requiredMountPath` as the minimum persistent path.
+GitLab encrypts CI/CD variables, personal access tokens, runner tokens, 2FA secrets and integrations with the keys in `/etc/gitlab/gitlab-secrets.json`. If that file is lost, GitLab generates new keys and the existing encrypted data can no longer be read.
+
+At startup `persist-secrets.sh` therefore keeps the file on the volume at `/var/opt/gitlab/railway-secrets/gitlab-secrets.json` and links `/etc/gitlab/gitlab-secrets.json` to it:
+
+- If the volume already has the file, it is always used. It is never overwritten. A different file found in `/etc/gitlab` is kept next to it as `gitlab-secrets.json.replaced-<timestamp>`.
+- If only `/etc/gitlab` has the file (for example when `/etc/gitlab` is mounted as well), it is copied to the volume once.
+- On a fresh install, GitLab generates the file directly on the volume.
+
+You can change the location with `GITLAB_PERSISTENT_SECRETS_DIR`. It must be on the volume.
+
+> [!IMPORTANT]
+> **Existing instances (template ≤ 0.2.4):** the first deploy of this version still starts with a fresh `/etc/gitlab`. To keep the secrets your instance uses right now, copy them to the volume **before** you deploy the update, for example with `railway ssh`:
+>
+> ```bash
+> mkdir -p /var/opt/gitlab/railway-secrets
+> cp -p /etc/gitlab/gitlab-secrets.json /var/opt/gitlab/railway-secrets/
+> chmod 700 /var/opt/gitlab/railway-secrets
+> ```
+>
+> If an instance has already lost its secrets in an earlier redeploy, this fix cannot bring them back. CI/CD variables, access tokens and other data encrypted with the old keys stay invalid and have to be recreated. Runners have to be registered again. The [GitLab docs on lost secrets](https://docs.gitlab.com/administration/backup_restore/troubleshooting_backup_gitlab/#when-the-secrets-file-is-lost) explain how to reset them.
+
+SSH host keys (`/etc/gitlab/ssh_host_*`) are not persisted yet, so SSH clients may warn about a changed host key after a redeploy.
 
 ## Notes
 
