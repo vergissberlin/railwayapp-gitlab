@@ -83,6 +83,10 @@ Attach a Railway volume and mount these paths:
 - First boot can take several minutes.
 - Keep at least one persistent volume attached before storing projects.
 
+## 💬 Support
+
+Questions or feedback? Visit the [template forum on Railway Central Station](https://station.railway.com/templates/git-lab-ce-dbc250b4).
+
 <!-- footer -->
 ---
 
