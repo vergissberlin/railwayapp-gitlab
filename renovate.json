@@ -2,5 +2,13 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "GitLab required upgrade stop: stay on 19.2.x patches. Move to the next stop (19.5) only in a reviewed release, see README 'Upgrading GitLab'.",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["gitlab/gitlab-ce"],
+      "allowedVersions": "/^19\\.2\\./"
+    }
   ]
 }
