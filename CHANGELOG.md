@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.2](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.2.1...railwayapp-gitlab-v0.2.2) (2026-10-28)
+
+
+### Bug Fixes
+
+* memory-constrained GitLab defaults and prominent RAM minimum ([#20](https://github.com/vergissberlin/railwayapp-gitlab/issues/20)) ([efcc36e](https://github.com/vergissberlin/railwayapp-gitlab/commit/efcc36ebaf407ca0900bce2b7bfd1cf1cf575617))
+
+
+### Documentation
+
+* fix Railway deploy button link and add template forum link ([#18](https://github.com/vergissberlin/railwayapp-gitlab/issues/18)) ([85cd146](https://github.com/vergissberlin/railwayapp-gitlab/commit/85cd146e0b33c9d0566727e85aa687fa828901ec))
+
 ## [0.2.1](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.2.0...railwayapp-gitlab-v0.2.1) (2026-10-21)
 
 
