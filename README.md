@@ -4,7 +4,7 @@
 
 Deploy a self-hosted GitLab CE instance on Railway.
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/vGH4ea?referralCode=2_sIT9&utm_medium=integration&utm_source=template&utm_campaign=generic)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/gitlab-ce?referralCode=2_sIT9&utm_medium=integration&utm_source=template&utm_campaign=generic)
 
 ## 🏗️ Architecture
 
@@ -82,6 +82,10 @@ Attach a Railway volume and mount these paths:
 - GitLab needs significant RAM and CPU: plan for at least 4 GB RAM (8 GB recommended) and 2 vCPU. The first boot runs `gitlab-ctl reconfigure` and database migrations and can take 10-20 minutes before the healthcheck passes.
 - First boot can take several minutes.
 - Keep at least one persistent volume attached before storing projects.
+
+## 💬 Support
+
+Questions or feedback? Visit the [template forum on Railway Central Station](https://station.railway.com/templates/git-lab-ce-dbc250b4).
 
 <!-- footer -->
 ---
