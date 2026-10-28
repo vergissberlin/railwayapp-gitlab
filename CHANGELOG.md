@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.3.0...railwayapp-gitlab-v0.3.1) (2026-10-28)
+
+
+### Bug Fixes
+
+* persist gitlab-secrets.json on the volume ([#27](https://github.com/vergissberlin/railwayapp-gitlab/issues/27)) ([65aecd0](https://github.com/vergissberlin/railwayapp-gitlab/commit/65aecd0415a1a3380b0d3cf678fda53ec46662a5))
+
 ## [0.3.0](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.2.4...railwayapp-gitlab-v0.3.0) (2026-10-28)
 
 
