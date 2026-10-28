@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.2.4...railwayapp-gitlab-v0.3.0) (2026-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade GitLab to 19.2.9 (required stop) with upgrade guard ([#24](https://github.com/vergissberlin/railwayapp-gitlab/issues/24))
+
+### Features
+
+* upgrade GitLab to 19.2.9 (required stop) with upgrade guard ([#24](https://github.com/vergissberlin/railwayapp-gitlab/issues/24)) ([c248fa4](https://github.com/vergissberlin/railwayapp-gitlab/commit/c248fa4f53ebd8174a2a64d6460a54a762b0528b))
+
+
+### Chores
+
+* release 0.3.0 ([#26](https://github.com/vergissberlin/railwayapp-gitlab/issues/26)) ([9a24743](https://github.com/vergissberlin/railwayapp-gitlab/commit/9a247431aaf681ca0011f2013372ce10aef3c056))
+
 ## [0.2.4](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.2.3...railwayapp-gitlab-v0.2.4) (2026-10-28)
 
 
