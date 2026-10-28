@@ -24,4 +24,7 @@ fi
 
 export GITLAB_OMNIBUS_CONFIG="$omnibus"
 
+# Keep gitlab-secrets.json on the volume so encrypted data survives redeploys.
+/usr/local/bin/railway-gitlab-persist-secrets
+
 exec /assets/init-container
