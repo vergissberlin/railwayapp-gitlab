@@ -27,4 +27,7 @@ export GITLAB_OMNIBUS_CONFIG="$omnibus"
 # Refuse unsafe upgrades (skipped required stops, downgrades, pending background migrations).
 /usr/local/bin/railway-gitlab-upgrade-guard
 
+# Keep gitlab-secrets.json on the volume so encrypted data survives redeploys.
+/usr/local/bin/railway-gitlab-persist-secrets
+
 exec /assets/init-container
