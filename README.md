@@ -1,5 +1,8 @@
 # GitLab CE
 
+> [!IMPORTANT]
+> **Requires at least 4 GB RAM (8 GB recommended) and 2 vCPU.** On Railway's Free or Trial plan GitLab is OOM-killed during its first `gitlab-ctl reconfigure` and the deploy fails. Use the **Hobby or Pro plan**. The first boot takes 10–20 minutes before the healthcheck passes. The template already applies GitLab's [memory-constrained settings](https://docs.gitlab.com/omnibus/settings/memory_constrained_envs/) (single Puma process, Sidekiq concurrency 10, Prometheus monitoring off).
+
 ![Template Header](./template-header.svg)
 
 Deploy a self-hosted GitLab CE instance on Railway.
@@ -79,6 +82,7 @@ Attach a Railway volume and mount these paths:
 
 ## Notes
 
+- Memory tuning (set in `docker-entrypoint.sh` following GitLab's [memory-constrained environment guide](https://docs.gitlab.com/omnibus/settings/memory_constrained_envs/)): `puma['worker_processes']=0`, `sidekiq['concurrency']=10`, `prometheus_monitoring['enable']=false` and jemalloc `MALLOC_CONF` decay for Rails. Override them via `GITLAB_OMNIBUS_CONFIG` only if you give the service more memory.
 - GitLab needs significant RAM and CPU: plan for at least 4 GB RAM (8 GB recommended) and 2 vCPU. The first boot runs `gitlab-ctl reconfigure` and database migrations and can take 10-20 minutes before the healthcheck passes.
 - First boot can take several minutes.
 - Keep at least one persistent volume attached before storing projects.
