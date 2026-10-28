@@ -23,6 +23,7 @@ flowchart LR
 
 - `Dockerfile` uses the official `gitlab/gitlab-ce` image.
 - `docker-entrypoint.sh` injects Railway domain and dynamic `$PORT`.
+- `upgrade-guard.sh` refuses unsafe GitLab upgrades before they touch the volume (see [Upgrading GitLab](#upgrading-gitlab)).
 - `railway.toml` configures health checks, restart policy, and required volume mount.
 
 ## Environment variables
@@ -79,6 +80,43 @@ Attach a Railway volume and mount these paths:
 - `/var/log/gitlab`
 
 `railway.toml` enforces `/var/opt/gitlab` via `requiredMountPath` as the minimum persistent path.
+
+## Upgrading GitLab
+
+GitLab has to be upgraded along its [required upgrade stops](https://docs.gitlab.com/update/upgrade_paths/) (`… 18.11 → 19.2 → 19.5 → 19.8 → 19.11`). Each stop must run until its batched background migrations are finished before you move on. Skipping a stop can leave the database half-migrated.
+
+| Template release | GitLab | Bundled PostgreSQL | Upgrade from |
+|---|---|---|---|
+| 0.2.x | 18.11.x (required stop) | 16 and 17 (auto `pg-upgrade` to 17) | 18.10 or older 18.x |
+| 0.3.x | **19.2.x** (required stop) | 17 only | **18.11.x** only |
+
+The template moves through the stops one release at a time: it does not jump straight to the newest GitLab. Before GitLab touches an existing volume, `upgrade-guard.sh` checks four things. If a check fails, it stops the container with a clear log message **without changing any data**:
+
+- **Required stop skipped.** For example, a volume last used by GitLab 18.10 cannot go to 19.2.
+- **Downgrade.** The volume was used by a newer GitLab than the image.
+- **Unsupported database.** The bundled database is still PostgreSQL 16, which GitLab 19 no longer ships. GitLab 18.11 upgrades it to 17 automatically on boot.
+- **Pending migrations.** Batched background migrations of the previous version are not finished.
+
+### Updating an existing instance (18.11 → 19.2)
+
+1. Make sure your instance is on template release 0.2.x (GitLab 18.11.x). It should have run long enough for **Admin → Monitoring → Background migrations** to show nothing queued, running or failed.
+2. Create a backup: `gitlab-backup create` and keep a copy of `/etc/gitlab/gitlab-secrets.json` and `/etc/gitlab/gitlab.rb`. Or snapshot the Railway volume.
+3. Update the service to this release and wait for the healthcheck. Upgrade boots can take as long as the first boot (10–20 minutes).
+4. If the guard stops the container, use Railway's **Rollback** to return to the previous deployment, fix the reason from the log, and update again.
+
+**Older instances (GitLab 18.10 or earlier):** point the service source to the branch `gitlab-18.11` (Service → Settings → Source → Branch). Let it boot and finish its background migrations, then switch back to `main`.
+
+GitLab does not support downgrades. To go back, restore your backup.
+
+GitLab 19 removes features that were deprecated in 18.x. Check the [GitLab 19 upgrade notes](https://docs.gitlab.com/update/versions/gitlab_19_changes/) before you update. These are the changes most likely to affect this template:
+
+- **PostgreSQL 17 is required.** The bundled PostgreSQL 16 is gone, and the guard checks this.
+- **Mattermost is no longer bundled.** If you set `mattermost[...]` or `mattermost_external_url` in `GITLAB_OMNIBUS_CONFIG`, remove them first, or `gitlab-ctl reconfigure` fails.
+- **Webhook payload timestamps use ISO 8601.** Receivers that parse the old format need an update.
+
+The next required stop (19.5) will follow in a later template release, after 19.2 has run.
+
+To bypass the guard (not recommended), set `GITLAB_SKIP_UPGRADE_GUARD=true`.
 
 ## Notes
 

@@ -24,4 +24,7 @@ fi
 
 export GITLAB_OMNIBUS_CONFIG="$omnibus"
 
+# Refuse unsafe upgrades (skipped required stops, downgrades, pending background migrations).
+/usr/local/bin/railway-gitlab-upgrade-guard
+
 exec /assets/init-container
