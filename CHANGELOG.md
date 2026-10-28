@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.2.3...railwayapp-gitlab-v0.2.4) (2026-10-28)
+
+
+### Bug Fixes
+
+* allow workhorse internal API host 0.0.0.0:8181 ([#22](https://github.com/vergissberlin/railwayapp-gitlab/issues/22)) ([171ad50](https://github.com/vergissberlin/railwayapp-gitlab/commit/171ad502ddb74310e66a6d93261e708029fc0038))
+
 ## [0.2.3](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.2.2...railwayapp-gitlab-v0.2.3) (2026-10-28)
 
 
