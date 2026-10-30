@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.3.1...railwayapp-gitlab-v0.3.2) (2026-10-30)
+
+
+### Chores
+
+* **deps:** update gitlab/gitlab-ce docker tag to v19.2.10 ([#30](https://github.com/vergissberlin/railwayapp-gitlab/issues/30)) ([09746de](https://github.com/vergissberlin/railwayapp-gitlab/commit/09746de5ff40c22cc42ce725544ac022ad6793a4))
+
 ## [0.3.1](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.3.0...railwayapp-gitlab-v0.3.1) (2026-10-28)
 
 
