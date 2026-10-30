@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.3.2...railwayapp-gitlab-v0.3.3) (2026-10-30)
+
+
+### Bug Fixes
+
+* persist SSH host keys on the volume ([#32](https://github.com/vergissberlin/railwayapp-gitlab/issues/32)) ([8940347](https://github.com/vergissberlin/railwayapp-gitlab/commit/8940347ac7bf954d0736e216801d9ff6807483e9))
+
 ## [0.3.2](https://github.com/vergissberlin/railwayapp-gitlab/compare/railwayapp-gitlab-v0.3.1...railwayapp-gitlab-v0.3.2) (2026-10-30)
 
 
