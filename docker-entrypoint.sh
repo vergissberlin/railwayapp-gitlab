@@ -30,4 +30,7 @@ export GITLAB_OMNIBUS_CONFIG="$omnibus"
 # Keep gitlab-secrets.json on the volume so encrypted data survives redeploys.
 /usr/local/bin/railway-gitlab-persist-secrets
 
+# Keep the SSH host keys on the volume so SSH clients don't see a changed host key after a redeploy.
+/usr/local/bin/railway-gitlab-persist-ssh-host-keys
+
 exec /assets/init-container
