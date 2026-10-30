@@ -25,6 +25,7 @@ flowchart LR
 - `docker-entrypoint.sh` injects Railway domain and dynamic `$PORT`.
 - `railway.toml` configures health checks, restart policy, and required volume mount.
 - `persist-secrets.sh` keeps `gitlab-secrets.json` on the volume so encrypted data survives redeploys (see [Persistent storage](#persistent-storage)).
+- `persist-ssh-host-keys.sh` keeps the SSH host keys on the volume so the host key stays the same across redeploys (see [SSH host keys](#ssh-host-keys)).
 
 ## Environment variables
 
@@ -98,7 +99,28 @@ You can change the location with `GITLAB_PERSISTENT_SECRETS_DIR`. It must be on 
 >
 > If an instance has already lost its secrets in an earlier redeploy, this fix cannot bring them back. CI/CD variables, access tokens and other data encrypted with the old keys stay invalid and have to be recreated. Runners have to be registered again. The [GitLab docs on lost secrets](https://docs.gitlab.com/administration/backup_restore/troubleshooting_backup_gitlab/#when-the-secrets-file-is-lost) explain how to reset them.
 
-SSH host keys (`/etc/gitlab/ssh_host_*`) are not persisted yet, so SSH clients may warn about a changed host key after a redeploy.
+### SSH host keys
+
+GitLab's SSH server identifies itself with the host keys in `/etc/gitlab/ssh_host_*`. If they change, every SSH client warns `REMOTE HOST IDENTIFICATION HAS CHANGED` and refuses to `git clone`/`git push` over SSH until the old entry is removed from `known_hosts`.
+
+At startup `persist-ssh-host-keys.sh` therefore keeps the RSA, ECDSA and Ed25519 host keys on the volume at `/var/opt/gitlab/railway-ssh/` and links `/etc/gitlab/ssh_host_<type>_key` and `.pub` to them:
+
+- Keys that already exist on the volume are always used and never overwritten. A different key found in `/etc/gitlab` is kept next to it as `ssh_host_<type>_key.replaced-<timestamp>`.
+- If only `/etc/gitlab` has a key (for example when `/etc/gitlab` is mounted as well), it is copied to the volume once.
+- On a fresh install, the keys are generated directly on the volume.
+
+You can change the location with `GITLAB_PERSISTENT_SSH_DIR`. It must be on the volume.
+
+> [!NOTE]
+> **Existing instances (template ≤ 0.2.4 on this branch):** the first deploy of this version still starts with a fresh `/etc/gitlab`, so the host key changes one last time unless you copy the current keys to the volume **before** you deploy the update, for example with `railway ssh`:
+>
+> ```bash
+> mkdir -p /var/opt/gitlab/railway-ssh
+> cp -p /etc/gitlab/ssh_host_* /var/opt/gitlab/railway-ssh/
+> chmod 700 /var/opt/gitlab/railway-ssh
+> ```
+>
+> After that the host key stays the same across redeploys. Clients that already saw a changed key need `ssh-keygen -R <your-domain>` once.
 
 ## Notes
 
